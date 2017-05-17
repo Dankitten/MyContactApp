@@ -15,6 +15,8 @@ public class DataBaseHelper extends SQLiteOpenHelper{
     public static final String TABLE_NAME = "contact_table";
     public static final String COL_1 = "ID";
     public static final String COL_2 = "NAME";
+    public static final String COL_3 = "AGE";
+    public static final String COL_4 = "ADDRESS";
 
     public DataBaseHelper(Context context){
         super(context,DATABASE_NAME,null,1);
