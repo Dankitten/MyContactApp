@@ -15,9 +15,10 @@
         android:text="Add Data"
         android:id="@+id/button"
         android:onClick="addData"
-        android:layout_alignParentBottom="true"
+        android:layout_below="@+id/textView3"
         android:layout_toLeftOf="@+id/editText_address"
-        android:layout_toStartOf="@+id/editText_address" />
+        android:layout_toStartOf="@+id/editText_address"
+        android:layout_marginTop="54dp" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -84,9 +85,28 @@
         android:layout_height="wrap_content"
         android:text="View Contacts"
         android:id="@+id/button2"
+        android:onClick="viewData"
+        android:layout_alignTop="@+id/button"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Search"
+        android:id="@+id/button3"
         android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:onClick="searchData" />
+
+    <EditText
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/editText_searchFor"
+        android:layout_alignBottom="@+id/button3"
+        android:layout_toRightOf="@+id/button3"
         android:layout_alignRight="@+id/editText_address"
-        android:layout_alignEnd="@+id/editText_address"
-        android:onClick="viewData" />
+        android:layout_alignEnd="@+id/editText_address" />
 
 </RelativeLayout>

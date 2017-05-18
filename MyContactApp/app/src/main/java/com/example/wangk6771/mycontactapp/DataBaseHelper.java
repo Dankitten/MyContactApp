@@ -5,13 +5,14 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.util.Log;
 
 /**
  * Created by wangk6771 on 5/11/2017.
  */
 public class DataBaseHelper extends SQLiteOpenHelper{
 
-    public static final String DATABASE_NAME = "Contacts.db";
+    public static final String DATABASE_NAME = "Contact.db";
     public static final String TABLE_NAME = "contact_table";
     public static final String COL_1 = "ID";
     public static final String COL_2 = "NAME";
@@ -24,7 +25,7 @@ public class DataBaseHelper extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db){
-        db.execSQL("CREATE TABLE " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT)");
+        db.execSQL("CREATE TABLE " + TABLE_NAME + " (ID INTEGER PRIMARY KEY AUTOINCREMENT, NAME TEXT, AGE TEXT, ADDRESS TEXT)");
     }
 
     @Override
@@ -33,12 +34,18 @@ public class DataBaseHelper extends SQLiteOpenHelper{
         onCreate(db);
     }
 
-    public boolean insertData (String name){
+    public boolean insertData (String name, String age, String address){
         SQLiteDatabase db =  this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
         contentValues.put(COL_2, name);
-
+        //Log.d("Insertion", "name inserted");
+        contentValues.put(COL_3, age);
+        //Log.d("Insertion", "Age inserted");
+        contentValues.put(COL_4, address);
+        //Log.d("Insertion", "Address inserted");
         long result = db.insert(TABLE_NAME, null, contentValues);
+
+        //Log.d("Insertion" , "result is " + result);
         if(result == -1) return false;
         else return true;
     }
