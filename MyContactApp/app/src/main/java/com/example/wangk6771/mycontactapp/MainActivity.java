@@ -13,6 +13,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 
@@ -89,6 +90,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     public void searchName(View v){
+        setContentView(R.layout.search_main);
+        if(searchFor.getText().toString()=="") return;
         Cursor res = myDb.getAllData();
         StringBuffer buffer = new StringBuffer();
         while(res.moveToNext()) {
@@ -108,8 +111,17 @@ public class MainActivity extends AppCompatActivity {
         if (buffer.toString().equals("")){
             buffer.append("Not Found");
         }
-        showMessage("Search", buffer.toString());
+        //showMessage("Search", buffer.toString());
+        TextView display = (TextView) findViewById(R.id.displayText);
+        display.setText(buffer.toString());
        }
 
+    public void goBack(View v){
+        setContentView(R.layout.activity_main);
+        editName = (EditText) findViewById(R.id.editText_name);
+        editAge = (EditText) findViewById(R.id.editText_age);
+        editAddress = (EditText) findViewById(R.id.editText_address);
+        searchFor = (EditText) findViewById(R.id.editText_searchFor);
+    }
 
 }
