@@ -88,23 +88,28 @@ public class MainActivity extends AppCompatActivity {
         builder.show();
     }
 
-    private void searchData(String query){
+    public void searchName(View v){
         Cursor res = myDb.getAllData();
         StringBuffer buffer = new StringBuffer();
-        if(res.getColumnName(2).contains(searchFor.getText().toString())){
-            for(int i = 0; i<4; i++) {
-                if (i == 0) buffer.append("ID:");
-                if (i == 1) buffer.append("NAME: ");
-                if (i == 2) buffer.append("AGE: ");
-                if (i == 3) buffer.append("ADDRESS: ");
-                buffer.append(res.getString(i));
-                buffer.append("\n");
+        while(res.moveToNext()) {
+            for (int i = 0; i < 4; i++) {
+                if (res.getString(i).equals(searchFor.getText().toString()) && i == 1) {
+                    for (int k = 0; k < 4; k++) {
+                        if (k == 0) buffer.append("ID: ");
+                        if (k == 1) buffer.append("NAME: ");
+                        if (k == 2) buffer.append("AGE: ");
+                        if (k == 3) buffer.append("ADDRESS: ");
+                        buffer.append(res.getString(k));
+                        buffer.append("\n");
+                    }
+                }
             }
-            showMessage(query, buffer.toString());
-            return;
         }
-        else showMessage(query, "Person not found");
-    }
+        if (buffer.toString().equals("")){
+            buffer.append("Not Found");
+        }
+        showMessage("Search", buffer.toString());
+       }
 
 
 }
